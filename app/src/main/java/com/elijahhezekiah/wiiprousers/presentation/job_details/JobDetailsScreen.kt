@@ -1,10 +1,6 @@
 package com.elijahhezekiah.wiiprousers.presentation.job_details
 
-import android.view.ViewGroup
-import android.webkit.WebView
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -19,9 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.elijahhezekiah.wiiprousers.presentation.job_details.components.MapScreen
+
+//import com.elijahhezekiah.wiiprousers.presentation.job_details.components.MapScreen
 
 
 @Composable
@@ -37,34 +34,45 @@ fun JobDetailsScreen (
 
     val state = viewModel.state.value
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Scaffold { innerPadding ->
 
-      state.jobDetails?.let { job ->
-
+    state.jobDetails?.let { job ->
+ 
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(20.dp)
+                modifier = Modifier.fillMaxSize()
+                    .padding(bottom = innerPadding.calculateBottomPadding()),
+                horizontalAlignment = Alignment.Start
             ) {
 
            item {
 
-               Text(
-                        text = job.company.name,
-                        style = MaterialTheme.typography.displayMedium
-                    )
-               Spacer(modifier = Modifier.height(10.dp))
-               Text(
-                        text = job.company.catchPhrase,
-                        style = MaterialTheme.typography.headlineSmall
-                    )
-                Spacer(modifier = Modifier.height(10.dp))
-                 Text(
-                        text = job.company.bs,
-                        style = MaterialTheme.typography.headlineSmall
-                    )
-                }
+               Column (
+                   modifier = Modifier.padding(10.dp)
+                       .padding(horizontal = 10.dp, vertical = 16.dp)
+                       .fillMaxWidth(),
+                   horizontalAlignment = Alignment.CenterHorizontally
+               ) {
+
+                   Text(
+                       text = job?.company?.name ?: "",
+                       style = MaterialTheme.typography.displayMedium
+                   )
+                   Spacer(modifier = Modifier.height(10.dp))
+                   Text(
+                       text = job?.company?.catchPhrase ?: "",
+                       style = MaterialTheme.typography.headlineSmall
+                   )
+                   Spacer(modifier = Modifier.height(10.dp))
+                   Text(
+                       text = job?.company?.bs ?: "",
+                       style = MaterialTheme.typography.headlineSmall
+                   )
+
+               }
+             }
 
 
+/*
 
           item(job.website) {
               Column(
@@ -89,18 +97,19 @@ fun JobDetailsScreen (
 
           }
 
+*/
 
       item {
 
         Text(
-              text = "${job.address.street}, ${job.address.suite}, ${job.address.city}, ${job.address.zipcode})",
+              text = "${job?.address?.street}, ${job?.address?.suite}, ${job?.address?.city}, ${job?.address?.zipcode})",
               style = MaterialTheme.typography.bodySmall,
               overflow = TextOverflow.Ellipsis
           )
 
-         MapScreen(
+      /*   MapScreen(
                job.address
-             )
+             )*/
 
           }
          }

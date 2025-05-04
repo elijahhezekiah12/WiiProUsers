@@ -1,9 +1,12 @@
 package com.elijahhezekiah.wiiprousers.presentation.user_list.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -25,22 +28,24 @@ fun UserListItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onItemClick(user) }
-            .padding(20.dp),
+            .padding(30.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = "${user.name})",
+            text = user.name,
             style = MaterialTheme.typography.bodyMedium,
             overflow = TextOverflow.Ellipsis,
             textAlign = TextAlign.Center
         )
+        Spacer(modifier = Modifier.height(10.dp))
 
         Text(
             text = user.username,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.align(CenterVertically),
+            style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center
         )
+        Spacer(modifier = Modifier.height(10.dp))
 
         Text(
             text = user.email,
@@ -49,12 +54,6 @@ fun UserListItem(
             textAlign = TextAlign.Center
         )
 
-        Text(
-            text = user.phone,
-            style = MaterialTheme.typography.bodyMedium,
-            overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center
-        )
 
     }
 }

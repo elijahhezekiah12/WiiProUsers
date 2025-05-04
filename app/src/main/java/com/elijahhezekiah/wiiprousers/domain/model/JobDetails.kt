@@ -4,6 +4,7 @@ import com.elijahhezekiah.wiiprousers.data.Address
 import com.elijahhezekiah.wiiprousers.data.Company
 
 data class JobDetails(
+    val id: Int,
     val company: Company,
     val address: Address,
     val website: String

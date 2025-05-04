@@ -17,10 +17,11 @@ fun Users.toUserDetails() : UserDetails {
      )
 }
 
-fun Users.toJobDetails() : JobDetails? {
+fun Users.toJobDetails() : JobDetails {
     return JobDetails(
-         company = company,
-        website = website,
+        id = id,
         address = address,
+        website = website,
+        company = company,
     )
 }

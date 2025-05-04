@@ -2,8 +2,11 @@ package com.elijahhezekiah.wiiprousers.domain.use_case.GetJobDetails
 
 import android.util.Log
 import com.elijahhezekiah.wiiprousers.common.Resource
+import com.elijahhezekiah.wiiprousers.data.Users
 import com.elijahhezekiah.wiiprousers.data.mappers.toJobDetails
+import com.elijahhezekiah.wiiprousers.data.mappers.toUserDetails
 import com.elijahhezekiah.wiiprousers.domain.model.JobDetails
+import com.elijahhezekiah.wiiprousers.domain.model.UserDetails
 import com.elijahhezekiah.wiiprousers.domain.usersRepository.UsersRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

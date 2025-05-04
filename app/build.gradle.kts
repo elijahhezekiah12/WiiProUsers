@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -74,13 +75,17 @@ dependencies {
 
 
     // Google Maps SDK for Android
-    implementation(libs.places)
-    implementation(libs.play.services.maps)
+   // implementation(libs.places)
+  //  implementation(libs.play.services.maps)
 
     // Google maps Compose
-    implementation(libs.maps.compose)
+   // implementation(libs.maps.compose)
 
+    implementation(libs.kotlinx.serialization.json)
 
+    // MARK: - Navigation
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.compose)
 
 
 

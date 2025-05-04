@@ -1,5 +1,7 @@
 package com.elijahhezekiah.wiiprousers
 
+import kotlinx.serialization.Serializable
+
 sealed class Screen  (val route: String){
     object Home: Screen("home")
     object Details: Screen("details")
@@ -7,3 +9,8 @@ sealed class Screen  (val route: String){
 }
 
 
+@Serializable
+data class UserRoute( val id: Int)
+
+@Serializable
+data object UserListRoute

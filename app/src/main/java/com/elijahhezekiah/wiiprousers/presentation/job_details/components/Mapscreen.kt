@@ -1,5 +1,6 @@
 package com.elijahhezekiah.wiiprousers.presentation.job_details.components
 
+/*
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,4 +22,4 @@ fun MapScreen(address: Address) {
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState
     )
-}
+}*/

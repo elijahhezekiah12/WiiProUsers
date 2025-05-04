@@ -1,11 +1,16 @@
 package com.elijahhezekiah.wiiprousers.presentation.job_details
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.elijahhezekiah.wiiprousers.common.Resource
+import com.elijahhezekiah.wiiprousers.data.mappers.toJobDetails
 import com.elijahhezekiah.wiiprousers.domain.use_case.GetJobDetails.GetUserJobDetailsUseCase
+import com.elijahhezekiah.wiiprousers.domain.use_case.get_userDetails.GetUserDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
@@ -21,8 +26,9 @@ class JobDetailsViewModel @Inject constructor(
 
     }
 
-    fun getUserJobDetails(userId: Int?) {
-        userId?.let { getUserJobDetailsUseCase(it) }?.onEach { result ->
+    fun getUserJobDetails(userId: Int) {
+        getUserJobDetailsUseCase(userId).onEach { result ->
+
             when (result) {
                 is Resource.Error<*> -> {
 
@@ -35,10 +41,14 @@ class JobDetailsViewModel @Inject constructor(
                 }
 
                 is Resource.Success<*> -> {
+                   // val jobData = result.data?.map{it.toJobDetails(userId)}
+                     //val job = jobData?.get(0)
+
+                     Log.d("JobDetailsViewModel", "getUserJobDetails: ${result.data}")
                     _state.value = JobDetailsState(jobDetails = result.data)
                 }
             }
-        }
+        }.launchIn(viewModelScope)
     }
 
 
